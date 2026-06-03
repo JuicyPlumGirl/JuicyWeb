@@ -1,0 +1,143 @@
+# ============================================================
+# Decap CMS configuration for JuicyTTS marketing site
+# ============================================================
+#
+# SETUP CHECKLIST:
+#   1. Change `repo` below to your actual GitHub username/repo
+#   2. Choose an OAuth backend (see options below) and uncomment
+#   3. Push this file to the `main` branch
+#   4. Enable GitHub Pages (Settings → Pages → Source: GitHub Actions)
+#   5. Visit https://your-site.github.io/admin/ to start editing
+#
+# ---- OAuth backend options (pick ONE) -------------------------
+#
+# OPTION A — DecapBridge (recommended, free, no server needed):
+#   base_url: https://decapbridge.com
+#   auth_endpoint: github/auth
+#   Visit https://decapbridge.com to register your repo.
+#
+# OPTION B — Netlify Identity (if you host on Netlify):
+#   name: git-gateway
+#   (remove the github/base_url/auth_endpoint lines below)
+#   Then enable Identity in your Netlify site dashboard.
+#
+# OPTION C — Run locally with decap-server (no OAuth needed):
+#   npm install -g decap-server
+#   decap-server  (from your project root)
+#   Then open http://localhost:8080/admin/
+#   See: https://decapcms.org/docs/working-with-a-local-git-repository/
+# ============================================================
+
+backend:
+  name: github
+  repo: your-github-user/your-repo-name      # CHANGE ME
+  branch: main
+  base_url: https://decapbridge.com           # OAuth proxy (free, Option A)
+  auth_endpoint: github/auth
+
+publish_mode: editorial_workflow
+
+# Shown in the CMS top-bar and used for "View live" links.
+# Replace with your custom domain once DNS is live (e.g. https://juicytts.com).
+site_url: https://your-github-user.github.io/your-repo-name
+display_url: https://your-github-user.github.io/your-repo-name
+logo_url: /favicon.svg
+
+# Media uploaded through the CMS lands here (demo audio, images)
+media_folder: "website/assets/media"
+public_folder: "/assets/media"
+
+collections:
+
+  # ----------------------------------------------------------
+  # Site-wide settings (contact email, Discord URL, tagline)
+  # ----------------------------------------------------------
+  - name: settings
+    label: Site settings
+    files:
+      - file: "website/_data/site.yml"
+        name: site
+        label: Site
+        fields:
+          - { name: brand,           label: Brand name,            widget: string,  default: "JuicyTTS" }
+          - { name: tagline,         label: Hero tagline (HTML),   widget: text }
+          - { name: lede,            label: Hero lede paragraph,   widget: text }
+          - { name: contact_email,   label: Business inquiry email, widget: string }
+          - { name: discord_url,     label: Discord invite URL,    widget: string }
+          - { name: response_window, label: Response window,       widget: string,  default: "~24h on weekdays" }
+
+  # ----------------------------------------------------------
+  # Hero / audition voice samples
+  # ----------------------------------------------------------
+  - name: voices
+    label: Voice samples (audition panel)
+    folder: "website/_data/voices"
+    create: true
+    extension: yml
+    slug: "{{name}}"
+    fields:
+      - { name: name,  label: Voice name,                       widget: string }
+      - { name: tag,   label: Style tag (e.g. "warm · neutral"), widget: string }
+      - { name: clip,  label: Sample WAV/MP3 (optional),        widget: file,   required: false }
+      - { name: order, label: Display order,                    widget: number, default: 1 }
+
+  # ----------------------------------------------------------
+  # Pricing tiers  (edit numbers, features, CTA labels)
+  # ----------------------------------------------------------
+  - name: pricing
+    label: Pricing tiers
+    folder: "website/_data/tiers"
+    create: false          # tiers are fixed; edit only, don't add
+    extension: yml
+    slug: "{{code}}"
+    fields:
+      - { name: code,      label: "Tier code (voice_pack/starter/expressive/professional)", widget: string }
+      - { name: name,      label: Display name,         widget: string }
+      - { name: headline,  label: Big headline word,    widget: string }
+      - { name: pitch,     label: Short pitch (1 line), widget: text }
+      - { name: price_low, label: "Price low (e.g. 150)",  widget: number }
+      - { name: price_high,label: "Price high (e.g. 225)", widget: number }
+      - { name: popular,   label: Show "Most popular" badge?, widget: boolean, default: false }
+      - { name: cta_label, label: CTA button label,    widget: string }
+      - name: specs
+        label: Spec strip (data / styles / turnaround)
+        widget: object
+        fields:
+          - { name: data,       label: Data amount (e.g. "45–60 min"),   widget: string }
+          - { name: styles,     label: Styles (e.g. "1 Neutral"),        widget: string }
+          - { name: turnaround, label: Turnaround (e.g. "7–10 days"),    widget: string }
+      - name: features
+        label: Feature bullets
+        widget: list
+        fields:
+          - { name: text, label: Feature text, widget: string }
+      - { name: order, label: Display order, widget: number, default: 1 }
+
+  # ----------------------------------------------------------
+  # Integration cards
+  # ----------------------------------------------------------
+  - name: integrations
+    label: Integrations
+    folder: "website/_data/integrations"
+    create: true
+    extension: yml
+    slug: "{{name}}"
+    fields:
+      - { name: name,  label: Name,                              widget: string }
+      - { name: blurb, label: Short blurb,                      widget: text }
+      - { name: pill,  label: "Pill label (e.g. First-party)",  widget: string }
+      - { name: order, label: Display order,                    widget: number, default: 1 }
+
+  # ----------------------------------------------------------
+  # FAQ items
+  # ----------------------------------------------------------
+  - name: faq
+    label: FAQ
+    folder: "website/_data/faq"
+    create: true
+    extension: yml
+    slug: "{{order}}-{{question}}"
+    fields:
+      - { name: question, label: Question,    widget: string }
+      - { name: answer,   label: Answer,      widget: markdown }
+      - { name: order,    label: Order,       widget: number,  default: 1 }

@@ -1,0 +1,6 @@
+question: What hardware do I need?
+answer: >
+  Any NVIDIA GPU with 4 GB+ VRAM runs the player comfortably (RTX 20-series and up).
+  It will fall back to CPU but live-stream latency suffers.
+  We test on RTX 3080 Ti and RTX 5060 Ti.
+order: 1

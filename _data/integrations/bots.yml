@@ -1,0 +1,6 @@
+name: "Nightbot · SE · MixItUp"
+blurb: >
+  HTTP trigger endpoint with secret token.
+  We ship templated commands for all three. Copy, paste, done.
+pill: "Templates ready"
+order: 4

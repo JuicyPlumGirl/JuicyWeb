@@ -1,0 +1,16 @@
+# ============================================================
+# JuicyTTS site-wide settings
+# Edit here directly, or via /admin/ in the CMS.
+# ============================================================
+
+brand: JuicyTTS
+tagline: "Your voice. <em>No subscription.</em>"
+lede: >
+  We train a private TTS model on the voice you bring us and ship it as a
+  plug-and-play player with Twitch, Discord and OBS integrations baked in.
+  No subscriptions. No usage caps. No cloud round-trip.
+
+# IMPORTANT: Replace these with your real contact details before launch
+contact_email: contact@juicytts.com
+discord_url: https://discord.gg/juicytts
+response_window: "~24h on weekdays"

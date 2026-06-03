@@ -1,0 +1,5 @@
+question: Do I need to know Python?
+answer: >
+  No. The player ships as a one-click installer for Windows (macOS & Linux builds on request).
+  Setup wizards walk you through Twitch, Discord and OBS. Mostly "click, paste, save".
+order: 2

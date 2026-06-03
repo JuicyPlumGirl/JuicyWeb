@@ -1,0 +1,6 @@
+question: What languages?
+answer: >
+  English, Japanese, Chinese out of the box.
+  Multilingual voices (Professional tier) can switch mid-sentence.
+  Other languages are possible with a pretrained-base swap — just ask us.
+order: 5

@@ -1,0 +1,6 @@
+name: "Your own scripts"
+blurb: >
+  REST + WebSocket API on localhost. Build chatbots, accessibility tools,
+  sound alerts, anything you can wire to a webhook.
+pill: "Open API"
+order: 5

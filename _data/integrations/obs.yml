@@ -1,0 +1,6 @@
+name: "OBS Studio"
+blurb: >
+  Browser-source URL. Caption presets for streamer-mode and VTuber-mode.
+  Audio in-browser or routed to virtual cable.
+pill: "Drop-in"
+order: 3

@@ -1,0 +1,70 @@
+# ============================================================
+# JuicyTTS — Deploy site to GitHub Pages (standalone)
+# ============================================================
+#
+# This workflow assumes the repo root IS the website (i.e. index.html,
+# _data/, assets/ etc. are at the top level of the repo — NOT inside a
+# "website/" subfolder).
+#
+# HOW TO ENABLE (one time):
+#   1. Go to your repo on GitHub
+#   2. Settings → Pages
+#   3. Under "Build and deployment", set Source to "GitHub Actions"
+#   4. Push any change (or use the "Run workflow" button on the Actions tab)
+#   5. Your site will be live at https://<user>.github.io/<repo>/
+#      (or your custom domain if you added a CNAME file)
+#
+# Because this deploys via GitHub Actions (not the classic "deploy from a
+# branch" mode), Jekyll is NEVER run — so the _data/ folder is published
+# as-is and you do not have to worry about the .nojekyll file at all.
+# (We still create one below as a belt-and-suspenders safeguard.)
+# ============================================================
+
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+# Grant write permission to deploy to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Ensure .nojekyll exists
+        run: touch .nojekyll
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Upload the whole repo as the Pages artifact.
+      # The site is pure static HTML/CSS/JS — no build step needed.
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

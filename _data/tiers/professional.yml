@@ -1,0 +1,28 @@
+# Tier 3 — Professional / Production
+code: professional
+name: Professional
+headline: Pro.
+pitch: >
+  Production-grade. Studio audio, maximum-quality training,
+  broad commercial rights for agencies and studios.
+
+price_low: 850
+price_high: 850
+
+popular: false
+cta_label: Inquire about Professional
+
+specs:
+  data: "3–4 studio hours"
+  styles: "8 + Named Requests"
+  turnaround: "3–5 weeks"
+
+features:
+  - text: "Up to 3 voice clones, multi-language, 8 presets each"
+  - text: "Maximum-quality training to full convergence"
+  - text: "Named-emotion requests honoured (e.g. 'tired but warm')"
+  - text: "Optimised production export for studio pipelines"
+  - text: "90 days revisions + 1 yr of bugfix updates"
+  - text: "Broad commercial license incl. third-party content"
+
+order: 3

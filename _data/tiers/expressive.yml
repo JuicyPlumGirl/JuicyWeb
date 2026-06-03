@@ -1,0 +1,27 @@
+# Tier 2 — Expressive Voice
+code: expressive
+name: Expressive Voice
+headline: Expressive.
+pitch: >
+  Expressive range. Five named emotion presets, more training data,
+  monetisation cleared — the sweet spot for serious creators.
+
+price_low: 400
+price_high: 400
+
+popular: true
+cta_label: Start an Expressive commission
+
+specs:
+  data: "90 min–2 hr"
+  styles: "5 Named Presets"
+  turnaround: "14–18 days"
+
+features:
+  - text: "1 custom voice clone with 5 named emotion presets"
+  - text: "Extended training pass on a larger dataset for full emotional range"
+  - text: "Reference-audio style transfer at runtime"
+  - text: "Full integration suite plus 30 days of revision passes"
+  - text: "Monetized own-channel license (Twitch, YouTube, etc.)"
+
+order: 2

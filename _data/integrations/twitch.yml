@@ -1,0 +1,6 @@
+name: "Twitch Chat & EventSub"
+blurb: >
+  OAuth-connect any channel. Configure !tts, channel-point redeems
+  and per-role permissions in two minutes.
+pill: "First-party"
+order: 1

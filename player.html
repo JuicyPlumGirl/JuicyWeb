@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JuicyTTS Player · Desktop App Preview</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#0d0420">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/player.css">
+</head>
+
+<body>
+
+<div class="player-shell">
+
+  <!-- ===== Title bar (fake OS chrome) ===== -->
+  <div class="titlebar">
+    <div class="traffic"><i></i><i></i><i></i></div>
+    <div class="title">JuicyTTS Player</div>
+    <div class="ver">v1.0.0 · localhost:8765</div>
+  </div>
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="mark"></span>
+      <span class="name">JuicyTTS</span>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Main</div>
+      <button class="nav-item active" data-target="home">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg></span>
+        Home
+      </button>
+      <button class="nav-item" data-target="wizard">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></span>
+        Setup wizard
+        <span class="badge">New</span>
+      </button>
+      <button class="nav-item" data-target="voices">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg></span>
+        Voices
+      </button>
+      <button class="nav-item" data-target="synth">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 8v8M8 6v12M16 6v12M20 8v8"/></svg></span>
+        Synthesize
+      </button>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Integrations</div>
+      <button class="nav-item" data-target="twitch">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4-4h14v14l-4 4h-5l-3 3H6v-3H3zM7 5h13v11M11 9v5M16 9v5"/></svg></span>
+        Twitch
+        <span class="dot green"></span>
+      </button>
+      <button class="nav-item" data-target="discord">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 4.5A18 18 0 0 0 16 3l-.2.4a14 14 0 0 1 4 1.4 13 13 0 0 0-7.8 0 14 14 0 0 1 4-1.4L15.8 3a18 18 0 0 0-4.5 1.5C7 8 5.8 12 6 16c1.7 1.3 3.4 2 5 2.5l.6-1.4a8 8 0 0 1-2-1c1.6.7 3.4 1 5.4 1s3.8-.3 5.4-1a8 8 0 0 1-2 1l.6 1.4c1.6-.5 3.3-1.2 5-2.5.2-4.2-1.2-8-4.5-11.5zM10 15a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM14 15a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></span>
+        Discord
+        <span class="dot amber"></span>
+      </button>
+      <button class="nav-item" data-target="obs">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 17l5-5 4 4 5-5 4 4"/></svg></span>
+        OBS overlay
+        <span class="dot green"></span>
+      </button>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">System</div>
+      <button class="nav-item" data-target="diagnostics">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></span>
+        Diagnostics
+      </button>
+      <button class="nav-item" data-target="settings">
+        <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+        Settings
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="row"><span class="label">Server</span><span class="val"><span class="dot green" style="display:inline-block; vertical-align: middle; margin-right:4px;"></span>OK</span></div>
+      <div class="row"><span class="label">GPU</span><span class="val">RTX 3080 Ti</span></div>
+      <div class="row"><span class="label">Voices</span><span class="val">4</span></div>
+    </div>
+  </aside>
+
+  <!-- ===== Main pane ===== -->
+  <main class="main">
+
+    <!-- ============ HOME ============ -->
+    <section class="section active" id="home">
+      <div class="page-head">
+        <div>
+          <h1>Welcome back, <em>creator.</em></h1>
+          <p class="sub">Everything green means you're ready to stream. One amber light? We'll walk you through it.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-ghost btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg>
+            Refresh status
+          </button>
+          <button class="btn btn-primary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Quick test
+          </button>
+        </div>
+      </div>
+
+      <div class="first-time">
+        <div class="ft-content">
+          <h2>First time here? Run the setup wizard.</h2>
+          <p>A guided 5-step walkthrough: install your voice, test audio, connect Twitch &amp; Discord, set up OBS. Takes about 6 minutes.</p>
+        </div>
+        <div class="ft-cta">
+          <button class="btn btn-primary" data-jump="wizard">
+            Start setup
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="stat-icon ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">Local server</div>
+            <div class="val">Running</div>
+            <div class="sub">127.0.0.1:8765 · 12 ms</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="stat-icon ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">Voices loaded</div>
+            <div class="val">4 voices</div>
+            <div class="sub">Aria, Kobold, Hikari, Solomon</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="stat-icon ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 7v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V7l-8-5z"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">GPU</div>
+            <div class="val">CUDA available</div>
+            <div class="sub">RTX 3080 Ti · 12 GB · fp16</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="stat-icon ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4-4h14v14l-4 4h-5l-3 3H6v-3H3z"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">Twitch</div>
+            <div class="val">Connected as <span class="green">@yourname</span></div>
+            <div class="sub">Chat &amp; redeems active</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="stat-icon warn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">Discord</div>
+            <div class="val">Token not set</div>
+            <div class="sub">Configure to enable</div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="stat-icon ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+          <div class="stat-meta">
+            <div class="label">OBS overlay</div>
+            <div class="val">Reachable</div>
+            <div class="sub">/overlay · streamer preset</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel mt-24">
+        <div class="panel-head">
+          <h3>Quick actions</h3>
+          <span class="meta">Most-used tasks</span>
+        </div>
+        <div class="quick-actions">
+          <button class="quick-action" data-jump="synth">
+            <div class="qa-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="qa-title">Synthesize speech</div>
+            <div class="qa-desc">Type text, pick a voice, hit play.</div>
+          </button>
+          <button class="quick-action" data-jump="voices">
+            <div class="qa-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="qa-title">Install a voice</div>
+            <div class="qa-desc">Drag any <code class="code-inline">.ttsvoice</code> here.</div>
+          </button>
+          <button class="quick-action" data-jump="obs">
+            <div class="qa-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+            <div class="qa-title">Copy OBS URL</div>
+            <div class="qa-desc">Browser-source for captions + audio.</div>
+          </button>
+          <button class="quick-action" data-jump="diagnostics">
+            <div class="qa-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div class="qa-title">Run smoke test</div>
+            <div class="qa-desc">End-to-end check in ~8 seconds.</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SETUP WIZARD (abbreviated for preview) ============ -->
+    <section class="section" id="wizard">
+      <div class="page-head">
+        <div>
+          <h1>Setup <em>wizard</em></h1>
+          <p class="sub">Five steps. You'll be live by the end.</p>
+        </div>
+      </div>
+      <div class="wizard">
+        <div class="wizard-steps" id="wizardSteps">
+          <div class="wizard-step done" data-step="1"><div class="num">✓</div><div class="label">Welcome</div></div>
+          <div class="wizard-step current" data-step="2"><div class="num">2</div><div class="label">Install voice</div></div>
+          <div class="wizard-step" data-step="3"><div class="num">3</div><div class="label">Test audio</div></div>
+          <div class="wizard-step" data-step="4"><div class="num">4</div><div class="label">Connect chat</div></div>
+          <div class="wizard-step" data-step="5"><div class="num">5</div><div class="label">Set up OBS</div></div>
+        </div>
+        <div class="wizard-body">
+          <h2>Install your first voice</h2>
+          <p class="intro">When you commissioned a voice from us, we sent you a <code class="code-inline">.ttsvoice</code> file. Drop it below to install.</p>
+          <div class="dropzone">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            <h4>Drop your .ttsvoice file here</h4>
+            <p style="margin: 4px 0 14px;">or</p>
+            <button class="btn btn-primary btn-sm">Browse for file</button>
+          </div>
+        </div>
+        <div class="wizard-foot">
+          <button class="btn btn-ghost btn-sm" id="wizPrev">← Back</button>
+          <div class="row" style="gap: 12px;">
+            <button class="btn btn-ghost btn-sm" id="wizSkip">Skip for now</button>
+            <button class="btn btn-primary btn-sm" id="wizNext">Next: test audio <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VOICES ============ -->
+    <section class="section" id="voices">
+      <div class="page-head">
+        <div><h1>Your <em>voices</em></h1><p class="sub">Click to set default. Drag a .ttsvoice to install.</p></div>
+        <div class="actions">
+          <button class="btn btn-primary btn-sm">+ Install .ttsvoice</button>
+        </div>
+      </div>
+      <div class="voice-list">
+        <div class="voice-card active">
+          <div class="voice-card-head"><div class="v-avatar" style="background: linear-gradient(135deg, #39ff88, #1faa5d);">A</div><span class="status-pill ok">Default</span></div>
+          <div><h4>Aria</h4><div class="v-meta">warm · neutral · EN · 5 styles</div></div>
+          <div class="v-actions"><button class="btn btn-dark btn-sm">▶ Preview</button><button class="btn btn-ghost btn-sm">Manage</button></div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-head"><div class="v-avatar" style="background: linear-gradient(135deg, #a78bfa, #6d28d9);">K</div></div>
+          <div><h4>Kobold</h4><div class="v-meta">gravel · dramatic · EN · 3 styles</div></div>
+          <div class="v-actions"><button class="btn btn-dark btn-sm">▶ Preview</button><button class="btn btn-ghost btn-sm">Set default</button></div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-head"><div class="v-avatar" style="background: linear-gradient(135deg, #f9a8d4, #d946ef);">H</div></div>
+          <div><h4>Hikari</h4><div class="v-meta">bright · cheerful · JP/EN · 5 styles</div></div>
+          <div class="v-actions"><button class="btn btn-dark btn-sm">▶ Preview</button><button class="btn btn-ghost btn-sm">Set default</button></div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-card-head"><div class="v-avatar" style="background: linear-gradient(135deg, #fbbf24, #d97706);">S</div></div>
+          <div><h4>Solomon</h4><div class="v-meta">narrator · calm · EN · 4 styles</div></div>
+          <div class="v-actions"><button class="btn btn-dark btn-sm">▶ Preview</button><button class="btn btn-ghost btn-sm">Set default</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Remaining sections (synth, twitch, discord, obs, diagnostics, settings) omitted from preview for brevity -->
+    <section class="section" id="synth"><div class="page-head"><div><h1>Synthesize</h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">Full synthesize panel — available in the real desktop app.</p></section>
+    <section class="section" id="twitch"><div class="page-head"><div><h1>Twitch <em>integration</em></h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">Twitch setup panel — available in the real desktop app.</p></section>
+    <section class="section" id="discord"><div class="page-head"><div><h1>Discord <em>integration</em></h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">Discord setup panel — available in the real desktop app.</p></section>
+    <section class="section" id="obs"><div class="page-head"><div><h1>OBS <em>overlay</em></h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">OBS overlay panel — available in the real desktop app.</p></section>
+    <section class="section" id="diagnostics"><div class="page-head"><div><h1>Diagnostics</h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">Diagnostics panel — available in the real desktop app.</p></section>
+    <section class="section" id="settings"><div class="page-head"><div><h1>Settings</h1></div></div><p style="color:var(--ink-3); padding: 40px 0; text-align:center;">Settings panel — available in the real desktop app.</p></section>
+
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  });
+  document.querySelectorAll('[data-jump]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nav = document.querySelector(`.nav-item[data-target="${btn.dataset.jump}"]`);
+      if (nav) nav.click();
+    });
+  });
+  let wizardStep = 2;
+  const wizardSteps = document.querySelectorAll('.wizard-step');
+  function setWizardStep(n) {
+    wizardStep = Math.max(1, Math.min(5, n));
+    wizardSteps.forEach((s, i) => {
+      const k = i + 1;
+      s.classList.remove('done', 'current');
+      if (k < wizardStep) s.classList.add('done');
+      if (k === wizardStep) s.classList.add('current');
+      s.querySelector('.num').textContent = (k < wizardStep) ? '✓' : k;
+    });
+  }
+  document.getElementById('wizNext')?.addEventListener('click', () => setWizardStep(wizardStep + 1));
+  document.getElementById('wizPrev')?.addEventListener('click', () => setWizardStep(wizardStep - 1));
+  wizardSteps.forEach((s, i) => s.addEventListener('click', () => setWizardStep(i + 1)));
+</script>
+
+</body>
+</html>

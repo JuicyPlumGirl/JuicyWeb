@@ -1,0 +1,30 @@
+# Tier 0 — Voice Pack (off-the-shelf base bundle)
+# The accessible entry point: no commission, no waiting.
+# Six pre-trained actors plus the full player.
+
+code: voice_pack
+name: Voice Pack
+headline: Pack.
+pitch: >
+  Six ready-made voices and the full player, instantly.
+  No commission, no waiting list. The cheapest way to put real TTS on your stream.
+
+price_low: 35
+price_high: 35
+
+popular: false
+cta_label: Get the Voice Pack
+
+specs:
+  data: "Pre-trained"
+  styles: "6 Voices · Neutral"
+  turnaround: "Instant"
+
+features:
+  - text: "6 hand-trained voice actors — Aria, Kobold, Hikari, Solomon, Nova, Atlas"
+  - text: "Neutral delivery on every voice, full phoneme coverage"
+  - text: "Full desktop player with Twitch, Discord and OBS integrations"
+  - text: "Same engine, same player as the custom tiers — just pre-built voices"
+  - text: "Single-channel personal license"
+
+order: 0

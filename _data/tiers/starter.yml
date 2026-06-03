@@ -1,0 +1,32 @@
+# Tier 1 — Starter Voice
+# Edit pricing, features, and pitch here.
+# These values are the source of truth for the CMS.
+# The index.html pricing section is hand-authored HTML; see README
+# for instructions on keeping them in sync.
+
+code: starter
+name: Starter Voice
+headline: Starter.
+pitch: >
+  Your first custom voice. One emotion preset of your choice,
+  trained against your clips, ready to stream with on day one.
+
+price_low: 150
+price_high: 150
+
+popular: false
+cta_label: Inquire about Starter Voice
+
+specs:
+  data: "45–60 min"
+  styles: "1 Named Emotion"
+  turnaround: "7–10 days"
+
+features:
+  - text: "1 custom voice clone with 1 named emotion preset of your choice"
+  - text: "Focused training pass tuned to your clips"
+  - text: "Desktop player with Twitch, Discord and OBS integrations"
+  - text: "Stream-ready on day one"
+  - text: "Single-channel personal license"
+
+order: 1

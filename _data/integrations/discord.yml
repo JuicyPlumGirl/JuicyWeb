@@ -1,0 +1,6 @@
+name: "Discord Bot"
+blurb: >
+  Self-hosted bot reads any channel into any voice call.
+  One token, unlimited pairings. Expressive Voice & Professional tiers.
+pill: "First-party"
+order: 2

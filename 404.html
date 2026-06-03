@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 · JuicyTTS</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <style>
+    .err-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
+    .err-code { font-family: var(--font-display); font-weight: 700; font-size: clamp(120px, 22vw, 260px); line-height: 0.9; letter-spacing: -0.06em; color: var(--accent); font-variation-settings: "wdth" 75; }
+    .err-line { font-family: var(--font-mono); color: var(--ink-3); letter-spacing: 0.15em; text-transform: uppercase; font-size: 12px; margin-bottom: 12px; }
+    .err-msg { color: var(--ink-2); font-size: 18px; max-width: 480px; margin: 14px auto 28px; }
+  </style>
+</head>
+<body>
+  <div class="atmosphere"></div>
+  <div class="grain"></div>
+  <div class="err-wrap">
+    <div>
+      <div class="err-line">Signal lost</div>
+      <div class="err-code">404</div>
+      <p class="err-msg">That voice isn't in the bundle. The page you were looking for moved, was renamed, or never existed.</p>
+      <a class="btn btn-primary" href="/">
+        Back to JuicyTTS
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
